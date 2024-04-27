@@ -1,6 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://cnu1xhuexytbn"]
+[gd_scene load_steps=23 format=3 uid="uid://cnu1xhuexytbn"]
 
 [ext_resource type="Texture2D" uid="uid://be3lymdhh4t0b" path="res://sprites/kuro/KuroSprites.png" id="1_svief"]
+[ext_resource type="Script" path="res://code/kuro/kuro.gd" id="1_ydy3e"]
+[ext_resource type="Script" path="res://code/state_machine/state_machine.gd" id="2_fmeli"]
+[ext_resource type="Script" path="res://code/kuro/state_player_normal.gd" id="3_sk8fl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ru0j4"]
 radius = 4.0
@@ -173,6 +176,8 @@ animations = [{
 }]
 
 [node name="Kuro" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_ydy3e")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
@@ -182,5 +187,14 @@ shape = SubResource("CircleShape2D_ru0j4")
 texture_filter = 1
 texture_repeat = 1
 position = Vector2(0, -8)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_eie50")
-animation = &"walk_up"
+animation = &"idle_down"
+frame_progress = 0.965855
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_fmeli")
+
+[node name="StatePlayerNormal" type="Node" parent="StateMachine" node_paths=PackedStringArray("sprite")]
+script = ExtResource("3_sk8fl")
+sprite = NodePath("../../Sprite")
