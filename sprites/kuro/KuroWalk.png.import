@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://be3lymdhh4t0b"
-path="res://.godot/imported/KuroSprites.png-4de4b8633f83f43c020acc468243aa39.ctex"
+uid="uid://77rjdu1lt6a7"
+path="res://.godot/imported/KuroWalk.png-264622b54ba3eeca0e2fad25a3a5f7f5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/kuro/KuroSprites.png"
-dest_files=["res://.godot/imported/KuroSprites.png-4de4b8633f83f43c020acc468243aa39.ctex"]
+source_file="res://sprites/kuro/KuroWalk.png"
+dest_files=["res://.godot/imported/KuroWalk.png-264622b54ba3eeca0e2fad25a3a5f7f5.ctex"]
 
 [params]
 
