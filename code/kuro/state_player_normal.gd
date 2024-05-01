@@ -7,7 +7,7 @@ const STRING_RIGHT: String = "right"
 const STRING_UP: String = "up"
 const STRING_DOWN: String = "down"
 
-@export var sprite: AnimatedSprite2D = null
+@export var animation_player: AnimationPlayer = null
 
 var _direction_string: String = STRING_DOWN
 
@@ -42,7 +42,7 @@ func _update( _dt: float ) -> void:
 
 	# Play animations
 	if move_vec.length_squared() > 0.0:
-		sprite.play( "walk_" + _direction_string )
+		animation_player.play( "walk_" + _direction_string )
 	
 	else:
-		sprite.play( "idle_" + _direction_string )
+		animation_player.play( "idle_" + _direction_string )
