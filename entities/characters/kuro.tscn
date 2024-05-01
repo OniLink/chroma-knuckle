@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://cnu1xhuexytbn"]
+[gd_scene load_steps=24 format=3 uid="uid://cnu1xhuexytbn"]
 
 [ext_resource type="Script" path="res://code/kuro/kuro.gd" id="1_ydy3e"]
 [ext_resource type="Script" path="res://code/state_machine/state_machine.gd" id="2_fmeli"]
-[ext_resource type="Texture2D" path="res://sprites/kuro/KuroWalk.png" id="2_hiamc"]
+[ext_resource type="Texture2D" uid="uid://77rjdu1lt6a7" path="res://sprites/kuro/KuroWalk.png" id="2_hiamc"]
+[ext_resource type="Texture2D" uid="uid://b6w64xfwernp2" path="res://sprites/general/Shadow.png" id="3_bjth8"]
 [ext_resource type="Script" path="res://code/kuro/state_player_normal.gd" id="3_sk8fl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ru0j4"]
@@ -182,6 +183,13 @@ script = ExtResource("1_ydy3e")
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_ru0j4")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(0, 19)
+scale = Vector2(2, 2)
+texture = ExtResource("3_bjth8")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
