@@ -10,18 +10,23 @@ var _direction: Vector2 = Vector2.DOWN
 var _direction_string: String = STRING_DOWN
 
 
+# Get the current normalized direction that Kuro is facing
 func get_direction() -> Vector2:
 	return _direction
 
 
+# Get the current direction string describing Kuro's facing
+# Used for picking animations and sprites
 func get_direction_string() -> String:
 	return _direction_string
 
 
+# Get the normalized movement input for the player
 func get_movement_vector() -> Vector2:
 	return Input.get_vector( "pl_left", "pl_right", "pl_up", "pl_down" )
 
 
+# Update Kuro's current facing direction
 func update_direction( dir: Vector2 ) -> void:
 	if dir.length_squared() > 0.0:
 		_direction = dir.normalized()
