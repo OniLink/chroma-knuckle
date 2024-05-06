@@ -2,14 +2,24 @@ class_name StatePlayerNormal
 extends StatePlayer
 
 const WALK_SPEED: float = 100.0
-const STRING_LEFT: String = "left"
-const STRING_RIGHT: String = "right"
-const STRING_UP: String = "up"
-const STRING_DOWN: String = "down"
 
-@export var sprite: AnimatedSprite2D = null
 
-var _direction_string: String = STRING_DOWN
+func _handle_input( event: InputEvent ) -> void:
+	if event.is_action_pressed( "pl_punch_neutral" ):
+		change_state( "StatePlayerPunchWind", { "element": Element.NEUTRAL } )
+		return
+	
+	if event.is_action_pressed( "pl_punch_cyan" ):
+		change_state( "StatePlayerPunchWind", { "element": Element.CYAN, "force_neutral": true } )
+		return
+	
+	if event.is_action_pressed( "pl_punch_magenta" ):
+		change_state( "StatePlayerPunchWind", { "element": Element.MAGENTA, "force_neutral": true } )
+		return
+	
+	if event.is_action_pressed( "pl_punch_yellow" ):
+		change_state( "StatePlayerPunchWind", { "element": Element.YELLOW, "force_neutral": true } )
+		return
 
 
 func _update( _dt: float ) -> void:
@@ -18,31 +28,10 @@ func _update( _dt: float ) -> void:
 	get_controller().velocity = WALK_SPEED * move_vec
 	
 	# Save the current direction of motion
-	if move_vec.length_squared() > 0.0:
-		var left_speed = move_vec.dot( Vector2.LEFT )
-		var right_speed = move_vec.dot( Vector2.RIGHT )
-		var up_speed = move_vec.dot( Vector2.UP )
-		var down_speed = move_vec.dot( Vector2.DOWN )
-		var max_speed = max( left_speed, right_speed, up_speed, down_speed )
-		
-		# Only update if the direction has changed/if prior direction is no longer appropriate
-		if (_direction_string == STRING_LEFT and left_speed < max_speed) \
-				or (_direction_string == STRING_RIGHT and right_speed < max_speed) \
-				or (_direction_string == STRING_UP and up_speed < max_speed) \
-				or (_direction_string == STRING_DOWN and down_speed < max_speed):
-			# Preferentially pick left/right
-			if max_speed == left_speed:
-				_direction_string = STRING_LEFT
-			elif max_speed == right_speed:
-				_direction_string = STRING_RIGHT
-			elif max_speed == up_speed:
-				_direction_string = STRING_UP
-			elif max_speed == down_speed:
-				_direction_string = STRING_DOWN
-
+	update_direction( move_vec )
+	
 	# Play animations
 	if move_vec.length_squared() > 0.0:
-		sprite.play( "walk_" + _direction_string )
-	
+		animation_player.play( "walk_" + get_direction_string() )
 	else:
-		sprite.play( "idle_" + _direction_string )
+		animation_player.play( "idle_" + get_direction_string() )
